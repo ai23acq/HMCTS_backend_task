@@ -1,0 +1,13 @@
+export enum StatusCode{
+    CREATE_SUCCESSFUL = 200,
+    UPDATE_SUCCESSFUL = 201,
+    NOT_CREATED = 400,
+    TASK_NOT_FOUND = 404,
+    INTERNAL_SERVER_ERROR = 500
+}
+
+export enum ErrorCode {
+    FAILED_REQUEST = 2001,
+    INTERNAL_EXCEPTION_ERROR = 5001,
+    NOT_FOUND = 4004
+}

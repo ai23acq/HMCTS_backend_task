@@ -1,0 +1,112 @@
+/post:
+  post:
+    tags: [Tasks]
+    description: Creating a task
+    requestBody:
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: [ title, description, dueDate]
+            properties:
+              title:
+                type: string
+                example: A coding task
+                description: The title of the task
+              description: 
+                type: string
+                example: A frontend and backend task to show your coding abilities
+                description: This is optional, but a description of the task
+              dueDate:
+                type: string
+                example: 'Friday, 9th June, 2026. 11:59pm'
+                description: The due date of the task given
+    responses:
+      200:
+        description: The task has been created successfully
+      400:
+        description: Cannot create new task
+
+/get:
+  get:
+    tags: [Tasks]
+    description: Getting all the tasks that have been created
+    responses:
+      200:
+        description: Successful
+      500: 
+        description: Something went wrong
+
+/get_single/{id}:
+  get:
+    tags: [Tasks]
+    description: Getting a single task
+    parameters:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+        example: 1
+    responses:
+      200:
+        description: Successful
+      500:
+        description: Server error
+
+/update_single/{id}:
+  patch:
+    tags: [Tasks]
+    description: Updating a single task
+    parameters: 
+      in: path
+      name: id
+      schema:
+        type: string
+        example: 1
+      required: true
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [title, description, status, dueDate]
+            properties:
+              title:
+                type: string
+                example: A coding task
+                description: The title of the task
+              description: 
+                type: string
+                example: A frontend and backend task to show your coding abilities
+                description: This is optional, but a description of the task
+              status:
+                type: string
+                example: In Progress
+                description: The current status of the task. It could be pending, in progress or completed
+              dueDate:
+                type: string
+                example: 'Friday, 9th June, 2026. 11:59pm'
+                description: The due date of the task given
+    responses:
+      200:
+        description: Task update successful
+      404:
+        description: Task does not exist
+
+/delete_single/{id}:
+  delete:
+    tags: [Tasks]
+    description: Deleting a single task
+    parameters:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+        example: 1
+    responses:
+      200:
+        description: Task deleted successful
+      500:
+        description: Task does not exist
